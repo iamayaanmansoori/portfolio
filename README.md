@@ -11,7 +11,7 @@ The site presents professional experience, skills, certifications, and engineeri
 - Featured Smart AI-Powered Camera Weapon Detection System project
 - Downloadable resume and project imagery
 - Optional Gemini-powered SOC Copilot chat and project deep dives
-- Contact form that opens a pre-filled email in the visitor's mail application
+- Contact form that emails submissions to the portfolio owner's inbox
 
 ## Built with
 

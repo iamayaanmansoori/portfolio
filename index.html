@@ -1475,7 +1475,12 @@
             } catch (error) {
                 console.error('Contact form submission failed:', error);
                 feedback.className = 'text-center text-xs font-mono py-2.5 px-4 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-700 mt-2 block';
-                feedback.textContent = 'Your message could not be sent. Please try again or email nolimitayaan@gmail.com directly.';
+                if (error instanceof Error && /activation/i.test(error.message)) {
+                    feedback.textContent = 'Email delivery needs one-time activation by the portfolio owner. Please try again later.';
+                } else {
+                    const reason = error instanceof Error ? ` ${error.message}` : '';
+                    feedback.textContent = `Your message could not be sent.${reason} Please try again or email nolimitayaan@gmail.com directly.`;
+                }
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = originalButtonContent;
