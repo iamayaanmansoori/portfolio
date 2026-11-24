@@ -1,0 +1,9 @@
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+config.js
+
+# OS & Temp
+.DS_Store
+Thumbs.db

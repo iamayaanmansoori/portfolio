@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohd Ayaan - SOC Analyst Portfolio</title>
-    <!-- Load Tailwind CSS -->
+    <title>Mohd Ayaan Mansoori — Associate Engineer & Cybersecurity SOC Specialist</title>
+    <meta name="description"
+        content="Portfolio of Mohd Ayaan Mansoori - Associate Engineer (Infrastructure | Managed Services), B.Tech Cyber Security (CGPA 8.67), ISO/IEC 27001 Certified, SIEM Operations, and Threat Detection.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
+    <!-- Environment Configuration -->
+    <script src="config.js"></script>
+
     <!-- Configure Tailwind -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -17,349 +32,1490 @@
                         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
                     },
                     colors: {
-                        'background': '#020617',
-                        'card-bg': '#0f172a',
-                        'corporate-dark': '#1e293b', 
-                        'accent': '#22d3ee',
-                        'accent-glow': 'rgba(34, 211, 238, 0.3)',
-                        'secondary': '#f43f5e',
-                        'text-light': '#f8fafc', 
-                        'text-muted': '#94a3b8', 
+                        cyber: {
+                            950: '#040711',
+                            900: '#070d1a',
+                            850: '#0b1325',
+                            800: '#0f1c35',
+                            750: '#16233f',
+                            700: '#1e293b',
+                            600: '#334155',
+                            100: '#f1f5f9',
+                            50: '#f8fafc',
+                        },
+                        neon: {
+                            cyan: '#06b6d4',
+                            sky: '#0284c7',
+                            blue: '#2563eb',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            violet: '#8b5cf6',
+                        }
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.35)',
+                        'neon-blue': '0 0 25px -5px rgba(37, 99, 235, 0.35)',
+                        'cyber-card': '0 10px 30px -10px rgba(2, 6, 23, 0.7)',
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.9' },
+                        }
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        html { scroll-behavior: smooth; }
-        
+        /* Dark mode base */
+        .dark body {
+            background-color: #040711;
+            color: #f1f5f9;
+        }
+
+        /* Light mode base with high-contrast text */
+        html:not(.dark) body {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
         body {
-            background-color: #020617;
-            background-image: 
-                linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .pro-shadow {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            transition: all 0.3s ease;
-        }
-        .pro-shadow:hover {
-            border-color: #22d3ee;
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
-            transform: translateY(-2px);
+        /* Cyber Grid Background for Dark Mode */
+        .dark .cyber-grid {
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px, 40px 40px;
         }
 
-        /* Result Text Styling */
-        #deep-dive-content h2, #scenario-content h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            color: #22d3ee;
-            border-bottom: 1px solid rgba(34, 211, 238, 0.2);
-            padding-bottom: 0.25rem;
+        /* Light Mode Clean Grid with high legibility */
+        html:not(.dark) .cyber-grid {
+            background-image:
+                linear-gradient(rgba(203, 213, 225, 0.45) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(203, 213, 225, 0.45) 1px, transparent 1px);
+            background-size: 36px 36px, 36px 36px;
         }
-        #deep-dive-content ul, #scenario-content ul { list-style-type: square; margin-left: 1.5rem; color: #cbd5e1; margin-bottom: 1rem; }
-        #deep-dive-content p, #scenario-content p { margin-bottom: 0.75rem; color: #94a3b8; }
 
+        /* Glass Cards for Dark Mode */
+        .dark .glass-card {
+            background: rgba(11, 19, 37, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.16);
+            box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.6);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dark .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.45);
+            box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.22);
+            transform: translateY(-3px);
+        }
+
+        /* Glass Cards for Light Mode */
+        html:not(.dark) .glass-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html:not(.dark) .glass-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 14px 28px -4px rgba(37, 99, 235, 0.12);
+            transform: translateY(-3px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #040711;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        html:not(.dark) ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        html:not(.dark) ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Chat bubbles */
         .chat-bubble-user {
-            background-color: #22d3ee;
-            color: #020617;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: #ffffff;
             align-self: flex-end;
-            border-radius: 1rem 1rem 0 1rem;
+            border-radius: 1rem 1rem 0.2rem 1rem;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
         }
-        .chat-bubble-ai {
-            background-color: #1e293b;
-            color: #f8fafc;
+
+        .dark .chat-bubble-ai {
+            background: rgba(15, 28, 53, 0.95);
+            color: #e2e8f0;
             align-self: flex-start;
-            border-radius: 1rem 1rem 1rem 0;
-            border: 1px solid rgba(34, 211, 238, 0.1);
+            border-radius: 1rem 1rem 1rem 0.2rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        html:not(.dark) .chat-bubble-ai {
+            background: #f1f5f9;
+            color: #0f172a;
+            align-self: flex-start;
+            border-radius: 1rem 1rem 1rem 0.2rem;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        }
+
+        /* Modal styling */
+        #deep-dive-content h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #0284c7;
+            border-bottom: 1px solid rgba(2, 132, 199, 0.25);
+            padding-bottom: 0.35rem;
+        }
+
+        .dark #deep-dive-content h2 {
+            color: #38bdf8;
+            border-bottom-color: rgba(56, 189, 248, 0.25);
+        }
+
+        #deep-dive-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+
+        #deep-dive-content li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #deep-dive-content li::before {
+            content: "▹";
+            position: absolute;
+            left: 0.25rem;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .dark #deep-dive-content li::before {
+            color: #06b6d4;
+        }
+
+        #deep-dive-content p {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
         }
     </style>
 </head>
-<body class="text-text-light font-sans antialiased">
+
+<body class="cyber-grid font-sans antialiased selection:bg-neon-blue/20 selection:text-neon-blue min-h-screen">
 
     <!-- Modal for Project AI Analysis -->
-    <div id="deep-dive-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-80 backdrop-blur-md transition-opacity duration-300">
-        <div class="bg-card-bg rounded-xl shadow-2xl w-full max-w-3xl m-4 max-h-[90vh] overflow-y-auto p-6 sm:p-8 transform transition-transform duration-300 scale-95 opacity-0 pro-shadow" id="modal-content-wrapper">
-            <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-3">
-                <h3 class="text-2xl font-mono font-bold text-accent" id="modal-title">Project Summary</h3>
-                <button onclick="closeModal('deep-dive-modal')" class="text-text-muted hover:text-white transition">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="deep-dive-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/75 backdrop-blur-md p-4 transition-opacity duration-300">
+        <div class="glass-card bg-white dark:bg-cyber-900/95 rounded-2xl w-full max-w-3xl max-h-[88vh] overflow-hidden flex flex-col shadow-2xl border border-blue-200 dark:border-neon-cyan/30 transform transition-all duration-300 scale-95 opacity-0"
+            id="modal-content-wrapper">
+            <div
+                class="flex justify-between items-center px-6 py-4 border-b border-slate-200 dark:border-cyber-700/60 bg-slate-50 dark:bg-cyber-850/80">
+                <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 rounded-full bg-blue-600 dark:bg-neon-cyan animate-pulse"></span>
+                    <h3 class="text-lg font-mono font-bold text-slate-900 dark:text-white tracking-wide"
+                        id="modal-title">SOC Telemetry Analysis</h3>
+                </div>
+                <button onclick="closeModal('deep-dive-modal')"
+                    class="p-1.5 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-200/50 dark:hover:bg-white/5 transition"
+                    aria-label="Close modal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
                 </button>
             </div>
-            <div id="deep-dive-content" class="text-text-light space-y-4 text-base font-mono"></div>
-            <div class="mt-6 pt-4 border-t border-gray-700 text-xs text-text-muted text-center italic">AI Analysis Ready</div>
+            <div id="deep-dive-content"
+                class="p-6 overflow-y-auto font-mono text-sm space-y-4 text-slate-800 dark:text-slate-200"></div>
+            <div
+                class="px-6 py-3 border-t border-slate-200 dark:border-cyber-700/60 bg-slate-50 dark:bg-cyber-950/60 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                <span class="flex items-center gap-2 text-blue-600 dark:text-neon-cyan">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    SOC Defense Verification Model
+                </span>
+                <span class="italic text-slate-400 dark:text-slate-500">Autonomous AI Intelligence</span>
+            </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-background/80 backdrop-blur-lg shadow-lg border-b border-white/10">
+    <!-- Navigation Header -->
+    <header
+        class="sticky top-0 z-50 bg-white/95 dark:bg-cyber-950/90 backdrop-blur-xl border-b border-slate-200/80 dark:border-cyber-800/80 transition-colors shadow-sm dark:shadow-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="#home" class="text-2xl font-mono font-extrabold text-accent">
-                    Mohd Ayaan <span class="text-text-muted text-xs font-normal uppercase tracking-widest hidden sm:inline">| SOC Analyst</span>
+                <!-- Logo with User's Photo -->
+                <a href="#home" class="flex items-center gap-3.5 group">
+                    <div
+                        class="w-11 h-11 rounded-full overflow-hidden border-2 border-blue-600 dark:border-neon-cyan shadow-sm flex-shrink-0 transition-transform group-hover:scale-105">
+                        <img src="assets/images/ayaan_profile.jpg" alt="Mohd Ayaan Mansoori"
+                            class="w-full h-full object-cover object-top">
+                    </div>
+                    <div>
+                        <span
+                            class="text-xl font-bold font-mono text-slate-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-neon-cyan transition">Mohd
+                            Ayaan Mansoori</span>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <span
+                                class="text-[11px] font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase font-semibold">Associate
+                                Engineer • SOC & Infra</span>
+                        </div>
+                    </div>
                 </a>
-                <div class="hidden md:flex space-x-8 font-mono text-sm">
-                    <a href="#about" class="text-text-light hover:text-accent transition">About</a>
-                    <a href="#skills" class="text-text-light hover:text-accent transition">Skills</a>
-                    <a href="#projects" class="text-text-light hover:text-accent transition">Projects</a>
-                    <a href="#contact" class="px-5 py-2 border border-accent text-accent rounded hover:bg-accent hover:text-background transition font-bold text-xs">Contact</a>
-                </div>
-                <button id="mobile-menu-button" class="md:hidden p-2 text-accent"><svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-card-bg border-t border-gray-800 px-4 py-4 space-y-4 font-mono text-sm">
-            <a href="#about" class="block text-text-light">About</a>
-            <a href="#skills" class="block text-text-light">Skills</a>
-            <a href="#projects" class="block text-text-light">Projects</a>
-            <a href="#contact" class="block text-accent">Contact</a>
-        </div>
-    </nav>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Hero Section -->
-        <section id="home" class="py-24 min-h-[70vh] flex items-center">
-            <div class="flex flex-col md:flex-row items-center justify-between w-full">
-                <div class="md:w-3/5 text-center md:text-left">
-                    <div class="inline-block px-3 py-1 rounded bg-accent/10 border border-accent/20 text-accent text-xs font-mono mb-4 uppercase tracking-widest">
-                        Blue Team Specialist
-                    </div>
-                    <h1 class="text-6xl md:text-8xl font-black leading-tight text-white mb-6">
-                        Mohd <span class="text-accent">Ayaan</span>
-                    </h1>
-                    <h2 class="text-xl md:text-2xl text-text-muted font-mono mb-8 uppercase tracking-tighter">
-                        SOC Specialist | Incident Response
-                    </h2>
-                    <p class="text-lg text-text-muted max-w-2xl mb-10 leading-relaxed">
-                        I specialize in attack detection and system hardening. Currently building defense strategies and mastering security operations.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start font-mono text-sm">
-                        <a href="#projects" class="px-8 py-4 bg-accent text-background font-bold rounded shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition uppercase tracking-widest">View Projects</a>
-                        <a href="#contact" class="px-8 py-4 border border-white/20 text-white font-bold rounded hover:bg-white/10 transition uppercase tracking-widest">Connect</a>
-                    </div>
-                </div>
-                <div class="md:w-2/5 mt-16 md:mt-0 flex justify-center">
-                    <div class="relative w-72 h-72 md:w-96 md:h-96 rounded flex items-center justify-center bg-card-bg shadow-2xl border border-accent/20 overflow-hidden">
-                        <img src="https://placehold.co/400x400/0f172a/22d3ee?text=A_V" alt="Mohd Ayaan" class="object-cover w-full h-full p-8 rounded opacity-80">
-                    </div>
-                </div>
-            </div>
-        </section>
+                <!-- Desktop Navigation Links without Slashes -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-3 font-mono text-xs">
+                    <a href="#about"
+                        class="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-neon-cyan rounded-lg hover:bg-slate-100 dark:hover:bg-cyber-800/50 transition">About</a>
+                    <a href="#experience"
+                        class="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-neon-cyan rounded-lg hover:bg-slate-100 dark:hover:bg-cyber-800/50 transition">Experience</a>
+                    <a href="#skills"
+                        class="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-neon-cyan rounded-lg hover:bg-slate-100 dark:hover:bg-cyber-800/50 transition">Skills</a>
+                    <a href="#projects"
+                        class="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-neon-cyan rounded-lg hover:bg-slate-100 dark:hover:bg-cyber-800/50 transition">Projects</a>
+                    <a href="#certifications"
+                        class="px-3 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-neon-cyan rounded-lg hover:bg-slate-100 dark:hover:bg-cyber-800/50 transition">Certificates</a>
 
-        <!-- About Section -->
-        <section id="about" class="py-24 border-t border-white/5">
-            <h3 class="text-3xl font-mono font-bold text-white mb-4 text-center">About Me</h3>
-            <div class="w-16 h-1 bg-accent mx-auto mb-12"></div>
-            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-card-bg p-8 rounded-xl pro-shadow">
-                    <h4 class="text-accent font-mono text-sm mb-4">My Goal</h4>
-                    <p class="text-text-muted leading-relaxed font-mono text-sm">
-                        I am dedicated to mastering SOC operations, log analysis, and incident detection. I bridge the gap between understanding threats and building strong defense mechanisms.
-                    </p>
-                    <div class="mt-8 space-y-4 font-mono text-xs">
-                        <div class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="text-accent">Location:</span>
-                            <span class="text-white">Uttarakhand, India</span>
-                        </div>
-                        <div class="flex justify-between border-b border-white/5 pb-2">
-                            <span class="text-accent">Education:</span>
-                            <span class="text-white">Final Year B.Tech (LTSU)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-card-bg p-8 rounded-xl pro-shadow">
-                    <h4 class="text-accent font-mono text-sm mb-4">Verifications</h4>
-                    <div class="space-y-4">
-                        <a href="https://drive.google.com/drive/folders/1wjc321HLWlPH8LzQyWTpX-sJw1hLyEz6?usp=sharing" target="_blank" class="flex items-center gap-4 p-4 bg-white/5 rounded hover:bg-white/10 transition group">
-                            <div class="text-2xl group-hover:scale-110 transition">📄</div>
-                            <div>
-                                <p class="text-sm font-bold text-white">Certificates</p>
-                                <p class="text-xs text-text-muted font-mono">Verify ISO/IEC 27001 & More</p>
-                            </div>
-                        </a>
-                        <div class="p-4 bg-accent/5 rounded border border-accent/10">
-                            <p class="text-xs font-mono text-accent uppercase tracking-tighter">Independent Problem Solver on TryHackMe.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-24">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div class="lg:col-span-2">
-                    <h3 class="text-3xl font-mono font-bold text-white mb-4">Technical Skills</h3>
-                    <div class="w-16 h-1 bg-accent mb-12"></div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-card-bg p-8 rounded-xl pro-shadow">
-                            <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2 uppercase tracking-widest">
-                                Monitoring
-                            </h4>
-                            <ul class="text-xs space-y-3 text-text-muted font-mono">
-                                <li>Splunk Log Analysis</li>
-                                <li>Wireshark Forensics</li>
-                                <li>Nmap Scanning</li>
-                                <li>Security Monitoring</li>
-                            </ul>
-                        </div>
-                        <div class="bg-card-bg p-8 rounded-xl pro-shadow">
-                            <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2 uppercase tracking-widest">
-                                Defense
-                            </h4>
-                            <ul class="text-xs space-y-3 text-text-muted font-mono">
-                                <li>Incident Response</li>
-                                <li>Blue Team Operations</li>
-                                <li>Linux Hardening</li>
-                                <li>Traffic Analysis</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI SOC Scenario Generator -->
-                <div class="bg-[#020617] rounded-xl p-8 border border-accent/30 shadow-[0_0_30px_rgba(34,211,238,0.05)] flex flex-col font-mono">
-                    <h4 class="text-xl font-bold mb-2 text-accent">Response Simulator</h4>
-                    <p class="text-xs text-text-muted mb-6">Select a threat to test my plan</p>
-                    
-                    <div class="space-y-4 mb-6">
-                        <label class="block text-[10px] uppercase tracking-widest text-accent/60">Incident Type</label>
-                        <select id="scenario-type" class="w-full bg-slate-900 border border-white/10 rounded p-3 text-xs text-white focus:ring-1 focus:ring-accent outline-none">
-                            <option value="Phishing Campaign">Phishing Campaign</option>
-                            <option value="Brute Force Attack">Brute Force Attack</option>
-                            <option value="Ransomware Outbreak">Ransomware Outbreak</option>
-                            <option value="Insider Data Leak">Insider Data Leak</option>
-                        </select>
-                    </div>
-
-                    <button id="generate-scenario-btn" onclick="generateSOCScenario()" class="w-full py-4 bg-accent/10 border border-accent/40 text-accent font-bold rounded hover:bg-accent hover:text-background transition duration-300 uppercase tracking-widest text-xs">
-                        Run Simulation
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle"
+                        class="p-2 ml-1 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-neon-cyan rounded-lg hover:bg-slate-100 dark:hover:bg-cyber-800/50 transition border border-slate-200 dark:border-cyber-700"
+                        title="Toggle Light/Dark Mode" aria-label="Toggle theme">
+                        <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-icon-light" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
                     </button>
 
-                    <div id="scenario-result" class="mt-6 flex-grow overflow-hidden relative min-h-[150px]">
-                        <div id="scenario-content" class="text-[10px] leading-normal opacity-0 transition-opacity duration-500 text-text-muted">
-                            Awaiting selection...
+                    <!-- Contact CTA -->
+                    <a href="#contact"
+                        class="ml-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-bold text-xs shadow-md hover:shadow-lg hover:from-blue-500 hover:to-indigo-500 transition uppercase tracking-wider">
+                        Let's Connect
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <button id="mobile-theme-toggle"
+                        class="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        aria-label="Toggle theme">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-button"
+                        class="p-2 text-blue-600 dark:text-neon-cyan hover:text-slate-900 dark:hover:text-white rounded-lg focus:outline-none"
+                        aria-label="Open navigation menu">
+                        <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile dropdown menu without slashes -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white dark:bg-cyber-900 border-b border-slate-200 dark:border-cyber-800 px-6 py-5 space-y-3 font-mono text-sm">
+            <a href="#about"
+                class="block text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-neon-cyan py-1">About</a>
+            <a href="#experience"
+                class="block text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-neon-cyan py-1">Experience</a>
+            <a href="#skills"
+                class="block text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-neon-cyan py-1">Skills</a>
+            <a href="#projects"
+                class="block text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-neon-cyan py-1">Projects</a>
+            <a href="#certifications"
+                class="block text-emerald-600 dark:text-neon-emerald hover:underline py-1">Certificates</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Hero Section -->
+        <section id="home" class="py-16 md:py-24 min-h-[85vh] flex items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
+
+                <!-- Left Details -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+
+                    <!-- Current Role Badge -->
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-cyber-850/90 border border-blue-200 dark:border-neon-cyan/30 text-blue-700 dark:text-neon-cyan text-xs font-mono tracking-wider shadow-sm font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span>DIGITIDE • ASSOCIATE ENGINEER — INFRASTRUCTURE</span>
+                    </div>
+
+                    <!-- Main Name and Title with High Contrast -->
+                    <div class="space-y-3">
+                        <h1
+                            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-none">
+                            Mohd Ayaan <br><span
+                                class="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 dark:from-neon-cyan dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Mansoori</span>
+                        </h1>
+                        <p
+                            class="text-lg sm:text-xl font-mono font-bold text-slate-700 dark:text-slate-300 flex items-center justify-center lg:justify-start gap-2">
+                            <span class="text-blue-600 dark:text-neon-cyan">&gt;</span> Associate Engineer —
+                            Infrastructure | Managed Services
+                        </p>
+                    </div>
+
+                    <!-- Professional Summary -->
+                    <p
+                        class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        Experienced in IT infrastructure support, system troubleshooting, networking, and technical
+                        operations. B.Tech Cyber Security specialist (CGPA: 8.67) with hands-on expertise in Linux
+                        administration, network security, SIEM operations, threat detection, and incident response.
+                    </p>
+
+                    <!-- Key Metadata Bar -->
+                    <div
+                        class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-2 font-mono text-xs">
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-white dark:bg-cyber-800/80 border border-slate-200 dark:border-cyber-700 text-slate-800 dark:text-slate-300 shadow-sm flex items-center gap-1.5 font-semibold">
+                            <span class="text-blue-600 dark:text-neon-cyan font-bold">🎓</span> B.Tech Cyber Security
+                            (CGPA: 8.67)
+                        </span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-white dark:bg-cyber-800/80 border border-slate-200 dark:border-cyber-700 text-slate-800 dark:text-slate-300 shadow-sm flex items-center gap-1.5 font-semibold">
+                            <span class="text-emerald-600 dark:text-neon-emerald font-bold">✓</span> ISO/IEC 27001:2022
+                            Certified
+                        </span>
+                        <span
+                            class="px-3 py-1.5 rounded-lg bg-white dark:bg-cyber-800/80 border border-slate-200 dark:border-cyber-700 text-slate-800 dark:text-slate-300 shadow-sm flex items-center gap-1.5 font-semibold">
+                            <span class="text-amber-600 dark:text-neon-amber font-bold">🏆</span> IBM Hackathon 1st
+                            Prize Winner
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right Visual: User's Real Photograph -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div
+                        class="relative w-80 h-96 sm:w-88 sm:h-[420px] rounded-2xl overflow-hidden shadow-xl border-2 border-slate-200 dark:border-cyber-700 bg-white dark:bg-cyber-900 transition-all hover:border-blue-500 dark:hover:border-neon-cyan">
+                        <img src="assets/images/ayaan_profile.jpg" alt="Mohd Ayaan Mansoori — Professional Photograph"
+                            class="w-full h-full object-cover object-top">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Professional Experience & Career Milestones Section -->
+        <section id="experience" class="py-20 border-t border-slate-200 dark:border-cyber-800/80">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <div
+                    class="inline-block px-3 py-1 rounded bg-blue-50 dark:bg-neon-cyan/10 border border-blue-200 dark:border-neon-cyan/30 text-blue-700 dark:text-neon-cyan font-mono text-xs uppercase tracking-widest font-semibold">
+                    Industry Experience & Background
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold font-mono text-slate-900 dark:text-white">Professional
+                    Experience</h2>
+                <div
+                    class="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-neon-cyan dark:to-blue-500 mx-auto rounded-full">
+                </div>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans">
+                    Practical engineering across enterprise infrastructure, managed services, and active threat lab
+                    investigations.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6">
+
+                <!-- Experience 1: Digitide -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-blue-300 dark:border-neon-cyan/30 relative">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-cyber-700/60 mb-4">
+                        <div>
+                            <span
+                                class="inline-block px-2.5 py-0.5 rounded bg-blue-100 dark:bg-neon-cyan/10 text-blue-700 dark:text-neon-cyan font-mono text-xs uppercase font-bold mb-1">Current
+                                Role</span>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white font-mono">Associate Engineer –
+                                Infrastructure | Managed Services</h3>
+                            <p class="text-blue-600 dark:text-neon-blue font-mono text-sm font-semibold">Digitide</p>
+                        </div>
+                        <div class="text-right font-mono text-xs text-slate-500 dark:text-slate-400 sm:self-start">
+                            <span
+                                class="px-3 py-1 rounded-full bg-slate-100 dark:bg-cyber-800 border border-slate-200 dark:border-cyber-700 text-emerald-600 dark:text-neon-emerald font-semibold">07/2026
+                                – Present</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2.5 text-slate-700 dark:text-slate-300 text-sm font-sans">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-blue-600 dark:text-neon-cyan font-bold font-mono mt-0.5">▹</span>
+                            <span>Support enterprise IT infrastructure operations, comprehensive system troubleshooting,
+                                and technical support escalation.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-blue-600 dark:text-neon-cyan font-bold font-mono mt-0.5">▹</span>
+                            <span>Assist with core network connectivity, system hardware/software diagnostics, and
+                                continuous infrastructure health monitoring.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-blue-600 dark:text-neon-cyan font-bold font-mono mt-0.5">▹</span>
+                            <span>Maintain strict operational records, document technical anomalies, and coordinate
+                                rapid incident escalation workflows.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Experience 2: CyberWarLab -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-cyber-700/70">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-cyber-700/60 mb-4">
+                        <div>
+                            <span
+                                class="inline-block px-2.5 py-0.5 rounded bg-indigo-100 dark:bg-neon-blue/10 text-indigo-700 dark:text-neon-blue font-mono text-xs uppercase font-bold mb-1">Internship</span>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white font-mono">Cybersecurity Intern
+                            </h3>
+                            <p class="text-slate-700 dark:text-slate-300 font-mono text-sm font-semibold">CyberWarLab
+                                (Virtual)</p>
+                        </div>
+                        <div class="text-right font-mono text-xs text-slate-500 dark:text-slate-400 sm:self-start">
+                            <span
+                                class="px-3 py-1 rounded-full bg-slate-100 dark:bg-cyber-800 border border-slate-200 dark:border-cyber-700 text-slate-700 dark:text-slate-300">12/2025
+                                – 01/2026</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2.5 text-slate-700 dark:text-slate-300 text-sm font-sans mb-4">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-indigo-600 dark:text-neon-blue font-bold font-mono mt-0.5">▹</span>
+                            <span>Performed hands-on security labs focused on web application vulnerabilities rigorously
+                                aligned with the <strong>OWASP Top 10</strong>.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-indigo-600 dark:text-neon-blue font-bold font-mono mt-0.5">▹</span>
+                            <span>Analyzed live network traffic and explored simulated attack scenarios to reinforce
+                                network security fundamentals and defensive posture.</span>
+                        </li>
+                    </ul>
+                    <a href="https://drive.google.com/file/d/1Tb_ps8iQ5d9UI4Z9q-cUqhGItvjeD5Td/view?usp=drivesdk"
+                        target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-indigo-50 dark:bg-neon-blue/10 border border-indigo-200 dark:border-neon-blue/30 text-indigo-700 dark:text-neon-blue hover:bg-indigo-600 hover:text-white transition font-mono text-xs font-bold">
+                        <span>📄 Verify CyberWarLab Internship Certificate (Drive)</span>
+                        <span>↗</span>
+                    </a>
+                </div>
+
+                <!-- Experience 3: Cloud King -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-cyber-700/70">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-cyber-700/60 mb-4">
+                        <div>
+                            <span
+                                class="inline-block px-2.5 py-0.5 rounded bg-amber-100 dark:bg-neon-amber/10 text-amber-800 dark:text-neon-amber font-mono text-xs uppercase font-bold mb-1">Industry
+                                Training</span>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white font-mono">Cybersecurity
+                                Training (3 Months)</h3>
+                            <p class="text-slate-700 dark:text-slate-300 font-mono text-sm font-semibold">Cloud King</p>
+                        </div>
+                        <div class="text-right font-mono text-xs text-slate-500 dark:text-slate-400 sm:self-start">
+                            <span
+                                class="px-3 py-1 rounded-full bg-slate-100 dark:bg-cyber-800 border border-slate-200 dark:border-cyber-700 text-slate-700 dark:text-slate-300">Duration:
+                                3 Months</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-700 dark:text-slate-300 text-sm font-sans leading-relaxed">
+                        Completed intensive cybersecurity training program, mastering defensive architectures,
+                        operational security protocols, and fundamental threat modeling practices.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Official Certifications & Verified Badges Vault -->
+        <section id="certifications" class="py-20 border-t border-slate-200 dark:border-cyber-800/80">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-neon-emerald/10 border border-emerald-200 dark:border-neon-emerald/30 text-emerald-700 dark:text-neon-emerald font-mono text-xs uppercase tracking-widest font-semibold">
+                    <span>Verified Proof Vault</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold font-mono text-slate-900 dark:text-white">Certifications &
+                    Awards</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto rounded-full"></div>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans">
+                    All certificates are authenticated with direct Google Drive links, official certificate IDs, and
+                    Credly badges.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+                <!-- Cert 1: ISO/IEC 27001:2022 -->
+                <div
+                    class="glass-card p-6 rounded-2xl flex flex-col justify-between border border-blue-300 dark:border-neon-cyan/30 hover:border-blue-500 dark:hover:border-neon-cyan">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="px-2.5 py-1 rounded bg-blue-100 dark:bg-neon-cyan/10 border border-blue-200 dark:border-neon-cyan/30 text-blue-700 dark:text-neon-cyan font-mono text-[10px] uppercase font-bold">
+                                ISO Standard
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">07 Dec 2025</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-2">ISO/IEC 27001:2022
+                            Information Security Associate™</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 font-sans mb-3">Issued by SkillFront / H2S
+                            Hack2Skill. Formal validation of Information Security Management Systems (ISMS).</p>
+                        <div
+                            class="p-2.5 rounded-lg bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700 font-mono text-[11px] text-slate-700 dark:text-slate-300 mb-4">
+                            <span class="text-slate-500">Cert ID:</span> <span
+                                class="text-blue-600 dark:text-neon-cyan font-bold">33824861257901</span>
+                        </div>
+                    </div>
+                    <div
+                        class="pt-4 border-t border-slate-200 dark:border-cyber-700/60 flex items-center justify-between">
+                        <a href="https://drive.google.com/file/d/1mVeDgbneI3uxlF62U6IVuFGkXPhf6wiP/view?usp=drivesdk"
+                            target="_blank" rel="noopener noreferrer"
+                            class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-cyan-500 dark:to-blue-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-mono text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>📄 View Certificate (Drive)</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 2: Technical Hackathon Awards (IBM Yuva Kaushal) -->
+                <div
+                    class="glass-card p-6 rounded-2xl flex flex-col justify-between border border-amber-300 dark:border-neon-amber/30 hover:border-amber-500 dark:hover:border-neon-amber">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="px-2.5 py-1 rounded bg-amber-100 dark:bg-neon-amber/10 border border-amber-200 dark:border-neon-amber/30 text-amber-800 dark:text-neon-amber font-mono text-[10px] uppercase font-bold">
+                                🥇 1st & 🥉 3rd Prize
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">01 Oct 2023</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-2">Yuva Kaushal Utsav
+                            Hackathon (IBM)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 font-sans mb-3">
+                            • <strong>1st Prize:</strong> D3A Data Discovery Dash Analytics<br>
+                            • <strong>3rd Prize:</strong> Web Page Making
+                        </p>
+                        <div
+                            class="p-2.5 rounded-lg bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700 font-mono text-[11px] text-slate-700 dark:text-slate-300 mb-4">
+                            <span class="text-slate-500">Host:</span> <span
+                                class="text-amber-700 dark:text-neon-amber font-bold">IBM & Yuva Kaushal Utsav</span>
+                        </div>
+                    </div>
+                    <div
+                        class="pt-4 border-t border-slate-200 dark:border-cyber-700/60 flex items-center justify-between">
+                        <a href="https://drive.google.com/file/d/1sEhba-ATd-Qg7jq_1_mDx5xw-pqYp5Lx/view?usp=drivesdk"
+                            target="_blank" rel="noopener noreferrer"
+                            class="w-full py-2.5 bg-amber-500 hover:bg-amber-600 dark:bg-neon-amber/15 dark:hover:bg-neon-amber text-white dark:text-neon-amber dark:hover:text-slate-950 border border-amber-400 dark:border-neon-amber/40 rounded-xl font-mono text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>🏆 View Award Certificate (Drive)</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 3: Certified Cybersecurity Educator Professional (CCEP) -->
+                <div
+                    class="glass-card p-6 rounded-2xl flex flex-col justify-between border border-rose-300 dark:border-neon-rose/30 hover:border-rose-500 dark:hover:border-neon-rose">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="px-2.5 py-1 rounded bg-rose-100 dark:bg-neon-rose/10 border border-rose-200 dark:border-neon-rose/30 text-rose-700 dark:text-neon-rose font-mono text-[10px] uppercase font-bold">
+                                Red Team Leaders
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">03 Dec 2025</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-2">Certified
+                            Cybersecurity Educator Professional (CCEP)</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 font-sans mb-3">Exam completion credential
+                            issued by Joas A. Santos (Founder, Red Team Leaders).</p>
+                        <div
+                            class="p-2.5 rounded-lg bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700 font-mono text-[11px] text-slate-700 dark:text-slate-300 mb-4">
+                            <span class="text-slate-500">Status:</span> <span
+                                class="text-emerald-600 dark:text-neon-emerald font-bold">Exam Passed & Verified</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200 dark:border-cyber-700/60 flex flex-col gap-2">
+                        <a href="https://drive.google.com/file/d/1GYZUl5NiDeYTMdlGbdSlYTFoO73KypQe/view?usp=drivesdk"
+                            target="_blank" rel="noopener noreferrer"
+                            class="w-full py-2 bg-rose-600 hover:bg-rose-700 dark:bg-neon-rose/15 dark:hover:bg-neon-rose text-white dark:text-neon-rose dark:hover:text-white border border-rose-300 dark:border-neon-rose/40 rounded-xl font-mono text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>📄 View Certificate (Drive)</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="https://courses.redteamleaders.com/exam-completion/238804b2eb440a3a" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-center font-mono text-[10px] text-slate-600 dark:text-slate-400 hover:text-rose-600 dark:hover:text-neon-rose transition">
+                            Verify Online Exam Completion ↗
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 4: IBM Getting Started with Cybersecurity -->
+                <div
+                    class="glass-card p-6 rounded-2xl flex flex-col justify-between border border-blue-300 dark:border-neon-blue/30 hover:border-blue-500 dark:hover:border-neon-blue">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="px-2.5 py-1 rounded bg-blue-100 dark:bg-neon-blue/10 border border-blue-200 dark:border-neon-blue/30 text-blue-700 dark:text-neon-blue font-mono text-[10px] uppercase font-bold">
+                                IBM SkillsBuild
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">17 Apr 2025</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-2">Getting Started with
+                            Cybersecurity</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 font-sans mb-3">Issued by IBM SkillsBuild
+                            for demonstration of cybersecurity foundational architecture and defenses.</p>
+                        <div
+                            class="p-2.5 rounded-lg bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700 font-mono text-[11px] text-slate-700 dark:text-slate-300 mb-4">
+                            <span class="text-slate-500">Badge ID:</span> <span
+                                class="text-blue-600 dark:text-neon-blue font-bold">6c89473e-3daf</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200 dark:border-cyber-700/60 flex flex-col gap-2">
+                        <a href="https://drive.google.com/file/d/1H4Hw6aPC5jN5T6eQO2VjAb5WCv1lD37a/view?usp=drivesdk"
+                            target="_blank" rel="noopener noreferrer"
+                            class="w-full py-2 bg-blue-600 hover:bg-blue-700 dark:bg-neon-blue/15 dark:hover:bg-neon-blue text-white dark:text-neon-blue dark:hover:text-white border border-blue-300 dark:border-neon-blue/40 rounded-xl font-mono text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>📄 View Certificate (Drive)</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="https://www.credly.com/badges/6c89473e-3daf-4ad2-b797-a82e3a3892ba" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-center font-mono text-[10px] text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-neon-blue transition">
+                            Verify on Credly ↗
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 5: CyberWarLab Internship -->
+                <div
+                    class="glass-card p-6 rounded-2xl flex flex-col justify-between border border-emerald-300 dark:border-neon-emerald/30 hover:border-emerald-500 dark:hover:border-neon-emerald">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="px-2.5 py-1 rounded bg-emerald-100 dark:bg-neon-emerald/10 border border-emerald-200 dark:border-neon-emerald/30 text-emerald-700 dark:text-neon-emerald font-mono text-[10px] uppercase font-bold">
+                                Internship Proof
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">Jan 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-2">CyberWarLab
+                            Cybersecurity Internship</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 font-sans mb-3">Hands-on security lab
+                            certification covering OWASP Top 10 web vulnerabilities and network analysis.</p>
+                        <div
+                            class="p-2.5 rounded-lg bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700 font-mono text-[11px] text-slate-700 dark:text-slate-300 mb-4">
+                            <span class="text-slate-500">Scope:</span> <span
+                                class="text-emerald-600 dark:text-neon-emerald font-bold">OWASP Top 10 & PCAP</span>
+                        </div>
+                    </div>
+                    <div
+                        class="pt-4 border-t border-slate-200 dark:border-cyber-700/60 flex items-center justify-between">
+                        <a href="https://drive.google.com/file/d/1Tb_ps8iQ5d9UI4Z9q-cUqhGItvjeD5Td/view?usp=drivesdk"
+                            target="_blank" rel="noopener noreferrer"
+                            class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 dark:bg-neon-emerald/15 dark:hover:bg-neon-emerald text-white dark:text-neon-emerald dark:hover:text-slate-950 border border-emerald-300 dark:border-neon-emerald/40 rounded-xl font-mono text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>📄 View Certificate (Drive)</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cert 6: Official Credly & Skills Badge -->
+                <div
+                    class="glass-card p-6 rounded-2xl flex flex-col justify-between border border-violet-300 dark:border-neon-violet/30 hover:border-violet-500 dark:hover:border-neon-violet">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="px-2.5 py-1 rounded bg-violet-100 dark:bg-neon-violet/10 border border-violet-200 dark:border-neon-violet/30 text-violet-700 dark:text-neon-violet font-mono text-[10px] uppercase font-bold">
+                                Verified Badge
+                            </span>
+                            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">Digital Credential</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-2">Cybersecurity Skills
+                            & Verification Badge</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 font-sans mb-3">Official badge document and
+                            verification record acknowledging commitment to cybersecurity excellence.</p>
+                        <div
+                            class="p-2.5 rounded-lg bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700 font-mono text-[11px] text-slate-700 dark:text-slate-300 mb-4">
+                            <span class="text-slate-500">Also:</span> <span
+                                class="text-violet-700 dark:text-neon-violet font-bold">OWASP Top 10 (LinkedIn
+                                2025)</span>
+                        </div>
+                    </div>
+                    <div
+                        class="pt-4 border-t border-slate-200 dark:border-cyber-700/60 flex items-center justify-between">
+                        <a href="https://drive.google.com/file/d/1F-46X7lC5WZM5apvJXOdHE_62a5ru3_0/view?usp=drivesdk"
+                            target="_blank" rel="noopener noreferrer"
+                            class="w-full py-2.5 bg-violet-600 hover:bg-violet-700 dark:bg-neon-violet/15 dark:hover:bg-neon-violet text-white dark:text-neon-violet dark:hover:text-white border border-violet-300 dark:border-neon-violet/40 rounded-xl font-mono text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>🛡️ View Badge Document (Drive)</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Technical Skills Section according to Resume -->
+        <section id="skills" class="py-20 border-t border-slate-200 dark:border-cyber-800/80">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <div
+                    class="inline-block px-3 py-1 rounded bg-blue-50 dark:bg-neon-blue/10 border border-blue-200 dark:border-neon-blue/30 text-blue-700 dark:text-neon-blue font-mono text-xs uppercase tracking-widest font-semibold">
+                    Technical Competency Stack
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold font-mono text-slate-900 dark:text-white">Skills Matrix (From
+                    Resume)</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto rounded-full"></div>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans">
+                    Detailed competencies across infrastructure, security tools, networking protocols, and operating
+                    systems.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Skill Group 1: Infrastructure & Windows Server -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="text-blue-600 dark:text-neon-cyan font-mono text-xs font-bold uppercase">INFRASTRUCTURE
+                                & SERVERS</span>
+                            <span class="text-2xl">🖥️</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-3">IT Infrastructure &
+                            Support</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 font-sans">System & hardware
+                            troubleshooting, Windows diagnostics, and operational incident reporting.</p>
+                        <div class="space-y-2 text-xs font-mono text-slate-700 dark:text-slate-300">
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span class="text-blue-600 dark:text-neon-cyan font-bold">Active Directory Domain
+                                    Services (AD DS)</span>
+                            </div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span>Domain Controllers (DC, ADC, RODC)</span>
+                            </div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span>Microsoft 365 (Teams, Outlook, OneDrive)</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Skill Group 2: SIEM & Security Operations -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="text-emerald-600 dark:text-neon-emerald font-mono text-xs font-bold uppercase">SIEM
+                                & OPERATIONS</span>
+                            <span class="text-2xl">📡</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-3">SIEM & Security
+                            Tools</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 font-sans">Security monitoring, threat
+                            detection, alert triage, and incident response.</p>
+                        <div class="space-y-2 text-xs font-mono text-slate-700 dark:text-slate-300">
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span class="text-emerald-600 dark:text-neon-emerald font-bold">Splunk SIEM</span> & Log
+                                Analytics
+                            </div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span class="text-emerald-600 dark:text-neon-emerald font-bold">Wireshark & Nmap</span>
+                                Network Analysis
+                            </div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span>Burp Suite, Hydra, John the Ripper</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Group 3: Networking & Linux Administration -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="text-amber-700 dark:text-neon-amber font-mono text-xs font-bold uppercase">NETWORKING
+                                & OS</span>
+                            <span class="text-2xl">🐧</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-3">Networking & Linux
+                            Admin</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 font-sans">IP Addressing, Subnetting,
+                            DNS, DHCP, TCP/IP, OSI model, Routers & Switches.</p>
+                        <div class="space-y-2 text-xs font-mono text-slate-700 dark:text-slate-300">
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span class="text-amber-700 dark:text-neon-amber font-bold">Linux Administration</span>
+                                (Users, Permissions, Packages)
+                            </div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span>Windows 10/11, Kali Linux, Ubuntu</span>
+                            </div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span>Virtualization (VMware, VirtualBox)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Group 4: Cybersecurity Fundamentals -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="text-violet-700 dark:text-neon-violet font-mono text-xs font-bold uppercase">FUNDAMENTALS</span>
+                            <span class="text-2xl">🔒</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-3">Cyber Defense
+                            Principles</h3>
+                        <div class="space-y-2 text-xs font-mono text-slate-700 dark:text-slate-300">
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                CIA Triad & Threat Modeling</div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                OWASP Top 10 Web Vulnerabilities</div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                Cryptography & Vuln Assessment</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Group 5: Programming & Automation -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="text-blue-600 dark:text-neon-cyan font-mono text-xs font-bold uppercase">DEVELOPMENT</span>
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-3">Scripting &
+                            Automation</h3>
+                        <div class="space-y-2 text-xs font-mono text-slate-700 dark:text-slate-300">
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <span class="text-blue-600 dark:text-neon-cyan font-bold">Python</span> (YOLOv8, OpenCV,
+                                Pandas, SMTP)</div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                Bash Shell Scripting (Basic)</div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                Telegram Bot API & Webhook Alerts</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Group 6: Education & Academics -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="text-rose-600 dark:text-neon-rose font-mono text-xs font-bold uppercase">ACADEMICS</span>
+                            <span class="text-2xl">🎓</span>
+                        </div>
+                        <h3 class="text-lg font-bold font-mono text-slate-900 dark:text-white mb-3">Education Summary
+                        </h3>
+                        <div class="space-y-2 text-xs font-mono text-slate-700 dark:text-slate-300">
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <p class="font-bold text-slate-900 dark:text-white">B.Tech in Cyber Security (LTSU)</p>
+                                <p class="text-emerald-600 dark:text-neon-emerald font-bold">CGPA: 8.67 • 2023 – 2027
+                                </p>
+                            </div>
+                            <div
+                                class="p-2 rounded bg-slate-50 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">
+                                <p class="font-bold text-slate-900 dark:text-white">Class XII – PCM (Little Angel
+                                    School)</p>
+                                <p class="text-slate-600 dark:text-slate-400">Kichha, Uttarakhand • 2019 – 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="py-24 bg-card-bg rounded-[2rem] p-10 border border-white/5">
-            <h3 class="text-3xl font-mono font-bold text-white mb-4 text-center">Security Projects</h3>
-            <div class="w-16 h-1 bg-accent mx-auto mb-16"></div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-                <!-- Project 1 -->
-                <div class="bg-background/50 p-6 rounded-xl pro-shadow flex flex-col group">
-                    <div class="h-40 bg-slate-950 flex items-center justify-center text-accent text-3xl mb-6 rounded font-mono border border-white/5 group-hover:border-accent/30 transition uppercase">
-                        AI_Cam
-                    </div>
-                    <div class="flex-grow font-mono">
-                        <h4 class="text-lg font-bold text-white mb-2" id="p1-title">AI Surveillance</h4>
-                        <p class="text-text-muted text-[11px] mb-4" id="p1-desc">A computer vision system that monitors camera feeds in real-time to detect unauthorized access.</p>
-                        <button onclick="generateDeepDive('AI Surveillance', document.getElementById('p1-desc').innerText)" class="text-[10px] text-accent font-bold hover:underline">/View Analysis</button>
-                    </div>
+        <!-- Featured Project Section according to Resume & GitHub -->
+        <section id="projects" class="py-20 border-t border-slate-200 dark:border-cyber-800/80">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <div
+                    class="inline-block px-3 py-1 rounded bg-blue-50 dark:bg-neon-cyan/10 border border-blue-200 dark:border-neon-cyan/30 text-blue-700 dark:text-neon-cyan font-mono text-xs uppercase tracking-widest font-semibold">
+                    Featured Engineering Project
                 </div>
-                <!-- Project 2 -->
-                <div class="bg-background/50 p-6 rounded-xl pro-shadow flex flex-col group">
-                    <div class="h-40 bg-slate-950 flex items-center justify-center text-accent text-3xl mb-6 rounded font-mono border border-white/5 group-hover:border-accent/30 transition uppercase">
-                        SOC_Lab
+                <h2 class="text-3xl sm:text-4xl font-bold font-mono text-slate-900 dark:text-white">Smart AI-Powered
+                    Camera Weapon Detection System</h2>
+                <div
+                    class="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-neon-cyan dark:to-indigo-500 mx-auto rounded-full">
+                </div>
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans">
+                    Real-time CCTV perimeter surveillance with computer vision weapon detection, multi-channel dispatch,
+                    and automated voice alerts.
+                </p>
+            </div>
+
+            <div
+                class="max-w-5xl mx-auto glass-card rounded-3xl overflow-hidden border border-blue-300 dark:border-neon-cyan/40 shadow-xl dark:shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+
+                    <!-- Left: Real Visual Interface -->
+                    <div class="lg:col-span-5 relative h-72 lg:h-auto overflow-hidden bg-slate-950">
+                        <img src="assets/images/ai_cam_preview.jpg"
+                            alt="Smart AI-Powered Camera Weapon Detection System" class="w-full h-full object-cover">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent lg:hidden">
+                        </div>
+                        <div class="absolute top-4 left-4 flex flex-col gap-2">
+                            <span
+                                class="px-3 py-1 bg-black/75 backdrop-blur-md rounded border border-cyan-400 text-[10px] font-mono text-cyan-300 uppercase">
+                                YOLOv8 + OpenCV
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-black/75 backdrop-blur-md rounded border border-emerald-400 text-[10px] font-mono text-emerald-300 uppercase">
+                                40% Response Time Reduction
+                            </span>
+                        </div>
                     </div>
-                    <div class="flex-grow font-mono">
-                        <h4 class="text-lg font-bold text-white mb-2" id="p2-title">Threat Hunting Labs</h4>
-                        <p class="text-text-muted text-[11px] mb-4" id="p2-desc">A series of labs focused on detecting lateral movement, log investigation, and forensics on TryHackMe.</p>
-                        <button onclick="generateDeepDive('Threat Hunting Labs', document.getElementById('p2-desc').innerText)" class="text-[10px] text-accent font-bold hover:underline">/View Analysis</button>
+
+                    <!-- Right: Technical Details from Resume -->
+                    <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div
+                                class="flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-neon-cyan uppercase tracking-wider font-semibold">
+                                <span>⚡ Featured Project from Resume</span>
+                                <span>•</span>
+                                <span class="text-emerald-600 dark:text-neon-emerald">Tested & Operational</span>
+                            </div>
+                            <h3 class="text-2xl font-bold font-mono text-slate-900 dark:text-white">Automated Weapon
+                                Detection & Alert Dispatch</h3>
+
+                            <ul class="space-y-3 text-slate-700 dark:text-slate-300 text-sm font-sans leading-relaxed">
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-blue-600 dark:text-neon-cyan font-bold font-mono mt-0.5">✓</span>
+                                    <span><strong>Real-Time Detection:</strong> Engineered a CCTV surveillance pipeline
+                                        using YOLOv8 and OpenCV to detect lethal weapons (guns, knives) with low-latency
+                                        frame inference.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-blue-600 dark:text-neon-cyan font-bold font-mono mt-0.5">✓</span>
+                                    <span><strong>Instant Multi-Channel Dispatch:</strong> Integrated automated Email
+                                        (SMTP) and Telegram Bot alerts containing suspect visual snapshots, precise GPS
+                                        coordinates, and Google Maps routing.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-blue-600 dark:text-neon-cyan font-bold font-mono mt-0.5">✓</span>
+                                    <span><strong>Bilingual Voice Alerts & Cooldown:</strong> Implemented Hindi and
+                                        English audio alarms with intelligent cooldown timers to prevent alarm fatigue
+                                        and eliminate spam alerts.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <span class="text-blue-600 dark:text-neon-cyan font-bold font-mono mt-0.5">✓</span>
+                                    <span><strong>Quantifiable Impact:</strong> Achieved a reported <strong>40%
+                                            reduction in emergency response time</strong> during simulated security
+                                        incidents.</span>
+                                </li>
+                            </ul>
+
+                            <!-- Tech Stack Pills -->
+                            <div class="pt-2 flex flex-wrap gap-2 text-xs font-mono text-slate-700 dark:text-slate-300">
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">Python</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">YOLOv8</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">OpenCV</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">Pandas</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">SMTP</span>
+                                <span
+                                    class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-cyber-900 border border-slate-200 dark:border-cyber-700">Telegram
+                                    Bot API</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons including GitHub Link -->
+                        <div
+                            class="pt-4 border-t border-slate-200 dark:border-cyber-700/60 flex flex-wrap items-center gap-3">
+                            <!-- GitHub Button Requested by User -->
+                            <a href="https://github.com/iamayaanmansoori/Smart-AI-Powered-Camera-Weapon-Detection-System"
+                                target="_blank" rel="noopener noreferrer"
+                                class="px-5 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-blue-600 dark:hover:bg-neon-cyan dark:hover:text-black rounded-xl font-mono text-xs font-bold transition flex items-center gap-2 shadow-sm">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                                </svg>
+                                <span>View on GitHub ↗</span>
+                            </a>
+
+                            <!-- AI Deep Dive Modal Trigger -->
+                            <button
+                                onclick="generateDeepDive('Smart AI-Powered Camera Weapon Detection System', 'Real-time CCTV weapon detection using YOLOv8, OpenCV, Telegram/Email GPS alerts, and bilingual voice cooldown.')"
+                                class="px-5 py-3 bg-blue-50 dark:bg-neon-cyan/15 hover:bg-blue-600 hover:text-white dark:hover:bg-neon-cyan text-blue-700 dark:text-neon-cyan dark:hover:text-slate-950 border border-blue-300 dark:border-neon-cyan/40 rounded-xl font-mono text-xs font-bold transition flex items-center gap-2">
+                                <span>/Run AI Telemetry Deep-Dive</span>
+                                <span>↗</span>
+                            </button>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-24">
-            <h3 class="text-3xl font-mono font-bold text-white mb-4 text-center">Contact</h3>
-            <div class="w-16 h-1 bg-accent mx-auto mb-12"></div>
-            <div class="max-w-xl mx-auto bg-card-bg p-10 rounded-xl pro-shadow text-center font-mono">
-                <p class="text-accent text-xs mb-8 italic uppercase tracking-widest">Handshake Ready</p>
-                <div class="flex justify-center gap-10 py-6">
-                    <a href="https://linkedin.com/in/hii-its-ayaan" target="_blank" class="text-3xl hover:text-accent transition transform hover:scale-125" title="LinkedIn">💼</a>
-                    <a href="https://github.com/its-ayaan" target="_blank" class="text-3xl hover:text-accent transition transform hover:scale-125" title="GitHub">🛠️</a>
-                    <a href="mailto:ayaan@example.com" class="text-3xl hover:text-accent transition transform hover:scale-125" title="Email">📧</a>
-                    <a href="https://tryhackme.com/p/nolimitayaan" target="_blank" class="text-3xl hover:text-accent transition transform hover:scale-125" title="TryHackMe">🛡️</a>
-                </div>
-                <div class="mt-8 pt-8 border-t border-white/5 text-[10px] text-text-muted uppercase">
-                    Location: Uttarakhand, India
+        <!-- New Contact Section designed exactly like the user's reference image -->
+        <section id="contact" class="py-24 border-t border-slate-200 dark:border-cyber-800/80">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+
+                    <!-- Left Side: Let's Connect & Information Cards -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <h2 class="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+                                Let's <span class="text-blue-600 dark:text-neon-cyan">Connect</span>
+                            </h2>
+                            <p class="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                                I'm always interested in hearing about new projects, creative ideas, or opportunities to
+                                be part of your vision. Feel free to reach out!
+                            </p>
+                        </div>
+
+                        <!-- Contact Action Cards like Reference Image -->
+                        <div class="space-y-4">
+
+                            <!-- Card 1: Email -->
+                            <a href="mailto:nolimitayaan@gmail.com"
+                                class="glass-card p-5 rounded-2xl flex items-center justify-between group border border-slate-200 dark:border-cyber-700/80 hover:border-blue-500 dark:hover:border-neon-cyan transition block">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-neon-cyan flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-105 transition">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold tracking-wider">
+                                            Email</p>
+                                        <p
+                                            class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-neon-cyan transition break-all">
+                                            nolimitayaan@gmail.com</p>
+                                    </div>
+                                </div>
+                                <span
+                                    class="text-blue-600 dark:text-neon-cyan text-lg group-hover:translate-x-1 transition ml-2">→</span>
+                            </a>
+
+                            <!-- Card 2: Curriculum Vitae (Resume Download) -->
+                            <a href="assets/Mohd_Ayaan_Mansoori_Resume.pdf" target="_blank" rel="noopener noreferrer"
+                                class="glass-card p-5 rounded-2xl flex items-center justify-between group border border-slate-200 dark:border-cyber-700/80 hover:border-blue-500 dark:hover:border-neon-cyan transition block">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-neon-blue flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-105 transition">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold tracking-wider">
+                                            Curriculum Vitae</p>
+                                        <div class="flex items-center gap-2">
+                                            <p
+                                                class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-neon-cyan transition">
+                                                View / Download Resume</p>
+                                            <span
+                                                class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-[10px] font-mono font-bold">PDF</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span
+                                    class="text-blue-600 dark:text-neon-cyan text-lg group-hover:translate-x-1 transition ml-2">→</span>
+                            </a>
+
+                            <!-- Card 3: Location -->
+                            <div
+                                class="glass-card p-5 rounded-2xl flex items-center justify-between border border-slate-200 dark:border-cyber-700/80">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-neon-cyan flex items-center justify-center text-xl flex-shrink-0">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold tracking-wider">
+                                            Location</p>
+                                        <p class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                                            Uttarakhand 263148, India</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Connect on Social & Writing -->
+                        <div class="pt-2">
+                            <p
+                                class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold mb-3">
+                                Connect on Social & Writing</p>
+                            <div class="flex flex-wrap gap-2.5">
+                                <a href="https://github.com/iamayaanmansoori" target="_blank" rel="noopener noreferrer"
+                                    class="px-4 py-2 rounded-xl bg-white dark:bg-cyber-850 border border-slate-200 dark:border-cyber-700 text-slate-800 dark:text-slate-200 hover:border-blue-500 dark:hover:border-neon-cyan text-xs font-semibold flex items-center gap-2 shadow-sm transition">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://linkedin.com/in/hii-its-ayaan" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="px-4 py-2 rounded-xl bg-white dark:bg-cyber-850 border border-slate-200 dark:border-cyber-700 text-slate-800 dark:text-slate-200 hover:border-blue-500 dark:hover:border-neon-cyan text-xs font-semibold flex items-center gap-2 shadow-sm transition">
+                                    <svg class="w-4 h-4 fill-[#0077b5]" viewBox="0 0 24 24">
+                                        <path
+                                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                    </svg>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://tryhackme.com/p/nolimitayaan" target="_blank" rel="noopener noreferrer"
+                                    class="px-4 py-2 rounded-xl bg-white dark:bg-cyber-850 border border-slate-200 dark:border-cyber-700 text-slate-800 dark:text-slate-200 hover:border-red-500 text-xs font-semibold flex items-center gap-2 shadow-sm transition">
+                                    <span class="text-red-500 font-bold font-mono">THM</span>
+                                    <span>TryHackMe</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Direct Interactive Contact Form exactly as requested in screenshot -->
+                    <div class="lg:col-span-7">
+                        <div
+                            class="glass-card bg-white dark:bg-cyber-900/95 p-8 sm:p-10 rounded-3xl border border-slate-200 dark:border-cyber-700/80 shadow-xl">
+
+                            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+
+                                <!-- Row 1: Name and Email -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label for="contact-name"
+                                            class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 font-mono">Name</label>
+                                        <input type="text" id="contact-name" required placeholder="Your name"
+                                            class="w-full px-4 py-3.5 rounded-xl bg-slate-100 dark:bg-cyber-950 border border-slate-200 dark:border-cyber-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-600 dark:focus:border-neon-cyan focus:bg-white dark:focus:bg-cyber-900 focus:outline-none transition text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="contact-email"
+                                            class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 font-mono">Email</label>
+                                        <input type="email" id="contact-email" required placeholder="your@email.com"
+                                            class="w-full px-4 py-3.5 rounded-xl bg-slate-100 dark:bg-cyber-950 border border-slate-200 dark:border-cyber-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-600 dark:focus:border-neon-cyan focus:bg-white dark:focus:bg-cyber-900 focus:outline-none transition text-sm">
+                                    </div>
+                                </div>
+
+                                <!-- Row 2: Subject -->
+                                <div>
+                                    <label for="contact-subject"
+                                        class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 font-mono">Subject</label>
+                                    <input type="text" id="contact-subject" required placeholder="What's this about?"
+                                        class="w-full px-4 py-3.5 rounded-xl bg-slate-100 dark:bg-cyber-950 border border-slate-200 dark:border-cyber-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-600 dark:focus:border-neon-cyan focus:bg-white dark:focus:bg-cyber-900 focus:outline-none transition text-sm">
+                                </div>
+
+                                <!-- Row 3: Message -->
+                                <div>
+                                    <label for="contact-message"
+                                        class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2 font-mono">Message</label>
+                                    <textarea id="contact-message" rows="5" required placeholder="Your message..."
+                                        class="w-full px-4 py-3.5 rounded-xl bg-slate-100 dark:bg-cyber-950 border border-slate-200 dark:border-cyber-700 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-600 dark:focus:border-neon-cyan focus:bg-white dark:focus:bg-cyber-900 focus:outline-none transition text-sm resize-none"></textarea>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" id="send-msg-btn"
+                                    class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2.5 text-sm uppercase tracking-wider font-mono">
+                                    <svg class="w-5 h-5 -rotate-45" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                    </svg>
+                                    <span id="send-btn-text">Send Message</span>
+                                </button>
+
+                                <div id="form-feedback" class="hidden text-center text-xs font-mono py-2 rounded-lg">
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
+
     </main>
 
-    <!-- Assistant Widget -->
+    <!-- Floating AI SOC Copilot Assistant -->
     <div id="ai-assistant-wrapper" class="fixed bottom-6 right-6 z-[200]">
-        <div id="ai-assistant-window" class="hidden mb-4 bg-slate-900 w-80 sm:w-96 h-[450px] rounded-xl shadow-2xl border border-accent/20 flex flex-col overflow-hidden font-mono">
-            <div class="bg-slate-800 p-4 text-accent border-b border-accent/20 flex justify-between items-center text-xs uppercase font-bold">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-                    <span>Ayaan's Assistant</span>
+        <div id="ai-assistant-window"
+            class="hidden mb-4 glass-card bg-white dark:bg-cyber-950/95 w-[90vw] sm:w-[380px] h-[490px] rounded-2xl shadow-2xl border border-blue-200 dark:border-neon-cyan/40 flex flex-col overflow-hidden font-mono text-xs">
+            <div
+                class="bg-slate-100 dark:bg-cyber-900 px-4 py-3.5 border-b border-slate-200 dark:border-cyber-700/80 flex justify-between items-center text-xs font-bold">
+                <div class="flex items-center gap-2.5 text-slate-900 dark:text-white">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-600 dark:bg-neon-cyan opacity-75"></span>
+                        <span
+                            class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-600 dark:bg-neon-cyan"></span>
+                    </span>
+                    <span class="tracking-wide">Ayaan SOC AI Copilot</span>
                 </div>
-                <button onclick="toggleAssistant()" class="hover:text-white">&times;</button>
+                <button onclick="toggleAssistant()"
+                    class="p-1 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded transition"
+                    aria-label="Close assistant">✕</button>
             </div>
-            <div id="chat-messages" class="flex-grow p-4 overflow-y-auto flex flex-col gap-4 text-[11px]">
+
+            <div
+                class="px-3 py-2 bg-slate-50 dark:bg-cyber-900/40 border-b border-slate-200 dark:border-cyber-800/80 flex gap-1.5 overflow-x-auto whitespace-nowrap text-[10px] text-slate-700 dark:text-slate-300">
+                <button onclick="askPreset('What are Mohd Ayaan Mansoori\'s top skills from his resume?')"
+                    class="px-2 py-1 bg-white dark:bg-cyber-800 hover:bg-slate-200 dark:hover:bg-cyber-700 rounded-lg border border-slate-200 dark:border-cyber-700 transition">Resume
+                    Skills?</button>
+                <button onclick="askPreset('Tell me about the Smart AI Weapon Detection project and GitHub repo.')"
+                    class="px-2 py-1 bg-white dark:bg-cyber-800 hover:bg-slate-200 dark:hover:bg-cyber-700 rounded-lg border border-slate-200 dark:border-cyber-700 transition">Weapon
+                    Detection?</button>
+                <button onclick="askPreset('What certifications does Ayaan hold?') "
+                    class="px-2 py-1 bg-white dark:bg-cyber-800 hover:bg-slate-200 dark:hover:bg-cyber-700 rounded-lg border border-slate-200 dark:border-cyber-700 transition">Certificates?</button>
+            </div>
+
+            <div id="chat-messages" class="flex-grow p-4 overflow-y-auto flex flex-col gap-3 font-sans text-xs">
                 <div class="chat-bubble-ai p-3">
-                    Hello! I'm Ayaan's AI assistant. Ask me about his security skills, projects, or professional goals!
+                    <p class="font-mono text-blue-600 dark:text-neon-cyan font-bold text-[11px] mb-1">AYAAN-AI &gt;</p>
+                    Greetings! I am Mohd Ayaan Mansoori's AI Copilot. Ask me about his role at Digitide, his B.Tech in
+                    Cyber Security (CGPA 8.67), or his verified ISO 27001 & IBM awards!
                 </div>
             </div>
-            <div class="p-4 border-t border-white/5 flex gap-2">
-                <input type="text" id="chat-input" placeholder="Type a message..." class="flex-grow bg-slate-950 border border-white/10 rounded px-3 py-2 text-[10px] text-white focus:border-accent outline-none">
-                <button onclick="sendMessage()" class="bg-accent text-background px-3 py-2 rounded text-[10px] font-bold">SEND</button>
+
+            <div
+                class="p-3 border-t border-slate-200 dark:border-cyber-700/70 bg-slate-50 dark:bg-cyber-900/60 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Query Ayaan's resume or project..."
+                    class="flex-grow bg-white dark:bg-cyber-950 border border-slate-200 dark:border-cyber-700 rounded-xl px-3 py-2.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-blue-600 dark:focus:border-neon-cyan outline-none font-mono">
+                <button onclick="sendMessage()"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold font-mono transition shadow-sm">SEND</button>
             </div>
         </div>
-        <button onclick="toggleAssistant()" class="bg-accent text-background p-4 rounded shadow-2xl hover:scale-110 transition flex items-center gap-2">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+
+        <button onclick="toggleAssistant()" id="assistant-toggle-btn"
+            class="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition flex items-center gap-2 group"
+            aria-label="Open AI Assistant">
+            <svg class="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
+                </path>
+            </svg>
+            <span class="font-mono text-xs font-bold hidden sm:inline pr-1">SOC Copilot</span>
         </button>
     </div>
 
-    <footer class="bg-background text-text-muted py-12 border-t border-white/5 font-mono">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-white text-lg mb-2">Mohd Ayaan</p>
-            <p class="text-accent text-xs mb-6 uppercase tracking-widest">SOC Analyst Portfolio</p>
+    <!-- Footer -->
+    <footer
+        class="bg-white dark:bg-cyber-950 border-t border-slate-200 dark:border-cyber-800 text-slate-500 dark:text-slate-400 py-12 font-mono text-xs transition-colors">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <p class="text-slate-900 dark:text-white text-base font-bold">Mohd Ayaan Mansoori</p>
+                <p class="text-blue-600 dark:text-neon-cyan text-[11px] uppercase tracking-widest mt-1">Associate
+                    Engineer – Infrastructure | Managed Services & SOC Specialist</p>
+            </div>
+            <div class="flex items-center gap-6 text-slate-600 dark:text-slate-400">
+                <a href="#about" class="hover:text-blue-600 dark:hover:text-white transition">About</a>
+                <a href="#experience" class="hover:text-blue-600 dark:hover:text-white transition">Experience</a>
+                <a href="#skills" class="hover:text-blue-600 dark:hover:text-white transition">Skills</a>
+                <a href="#certifications" class="hover:text-blue-600 dark:hover:text-white transition">Certificates</a>
+                <a href="#contact" class="hover:text-blue-600 dark:hover:text-white transition">Contact</a>
+            </div>
+            <div class="text-[11px] text-slate-400 dark:text-slate-500">
+                &copy; <span id="current-year">2026</span> Mohd Ayaan Mansoori • ayaanmansoori.in
+            </div>
         </div>
     </footer>
 
+    <!-- Interactive Logic & Gemini AI Scripts -->
     <script>
-        // REPLACE THE EMPTY QUOTES BELOW WITH YOUR API KEY FROM GOOGLE AI STUDIO
-        const apiKey = "AIzaSyAKo-lmUs-cKnpf3_sIzfK0ElhLYMyqNwg"; 
-        const modelName = "gemini-2.5-flash-preview-09-2025";
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const themeIconDark = document.getElementById('theme-icon-dark');
+        const themeIconLight = document.getElementById('theme-icon-light');
+
+        function updateThemeUI() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (themeIconDark && themeIconLight) {
+                if (isDark) {
+                    themeIconDark.classList.remove('hidden');
+                    themeIconLight.classList.add('hidden');
+                } else {
+                    themeIconDark.classList.add('hidden');
+                    themeIconLight.classList.remove('hidden');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            updateThemeUI();
+        }
+
+        if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        updateThemeUI();
+
+        // Mobile Nav Toggle
         const menuBtn = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+        if (menuBtn && mobileMenu) {
+            menuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+        }
 
+        // Contact Form Submission Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+            const btn = document.getElementById('send-msg-btn');
+            const feedback = document.getElementById('form-feedback');
+
+            btn.disabled = true;
+            btn.innerHTML = `<span>Preparing Email...</span>`;
+
+            // Open direct mail client with prefilled details
+            const mailtoUri = `mailto:nolimitayaan@gmail.com?subject=${encodeURIComponent(subject + " - from " + name)}&body=${encodeURIComponent("Sender Name: " + name + "\nSender Email: " + email + "\n\nMessage:\n" + message)}`;
+
+            window.location.href = mailtoUri;
+
+            feedback.className = "text-center text-xs font-mono py-2.5 px-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 mt-2 block";
+            feedback.innerHTML = `✓ Thank you ${name}! Your email client has been opened. Message is ready to send to nolimitayaan@gmail.com.`;
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = `<svg class="w-5 h-5 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg><span>Send Message</span>`;
+            }, 2000);
+        }
+
+        // Modal Logic
         const openModal = (id) => {
             const modal = document.getElementById(id);
-            const wrapper = modal.querySelector('.pro-shadow');
+            const wrapper = modal.querySelector('#modal-content-wrapper');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            setTimeout(() => { wrapper.classList.remove('opacity-0', 'scale-95'); wrapper.classList.add('opacity-100', 'scale-100'); }, 10);
-        };
-        const closeModal = (id) => {
-            const modal = document.getElementById(id);
-            const wrapper = modal.querySelector('.pro-shadow');
-            wrapper.classList.remove('opacity-100', 'scale-100');
-            wrapper.classList.add('opacity-0', 'scale-95');
-            setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); }, 300);
+            setTimeout(() => {
+                wrapper.classList.remove('opacity-0', 'scale-95');
+                wrapper.classList.add('opacity-100', 'scale-100');
+            }, 10);
         };
 
-        // LLM Logic
+        const closeModal = (id) => {
+            const modal = document.getElementById(id);
+            const wrapper = modal.querySelector('#modal-content-wrapper');
+            wrapper.classList.remove('opacity-100', 'scale-100');
+            wrapper.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        };
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal('deep-dive-modal');
+        });
+        document.getElementById('deep-dive-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'deep-dive-modal') closeModal('deep-dive-modal');
+        });
+
+        // Gemini AI Integration (.env & config.js powered)
+        let geminiApiKey = window.ENV?.GEMINI_API_KEY || localStorage.getItem('GEMINI_API_KEY') || "";
+        let geminiModel = window.ENV?.GEMINI_MODEL || "gemini-3.5-flash";
+
+        async function syncEnvFile() {
+            try {
+                const res = await fetch('.env');
+                if (res.ok) {
+                    const text = await res.text();
+                    const lines = text.split('\n');
+                    for (const line of lines) {
+                        const trimmed = line.trim();
+                        if (trimmed && !trimmed.startsWith('#')) {
+                            const [k, ...v] = trimmed.split('=');
+                            const val = v.join('=').trim().replace(/^["']|["']$/g, '');
+                            if (k.trim() === 'GEMINI_API_KEY' && val) geminiApiKey = val;
+                            if (k.trim() === 'GEMINI_MODEL' && val) geminiModel = val;
+                        }
+                    }
+                }
+            } catch (err) { }
+        }
+        syncEnvFile();
+
         async function callGemini(prompt, systemInstruction = "") {
-            const response = await fetch(apiUrl, {
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${geminiApiKey}`;
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -367,69 +1523,132 @@
                     systemInstruction: systemInstruction ? { parts: [{ text: systemInstruction }] } : undefined
                 })
             });
+            if (!response.ok) throw new Error(`API error status: ${response.status}`);
             const data = await response.json();
-            return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
+            return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
         }
 
         const markdownToHtml = (md) => {
-            return md.replace(/^## (.*$)/gim, '<h2>$1</h2>')
-                     .replace(/^\* (.*$)/gim, '<li>$1</li>')
-                     .replace(/((?:<li>.*?<\/li>\n?)+)/gs, '<ul>$1</ul>')
-                     .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-                     .replace(/\n\n/g, '</p><p>')
-                     .replace(/\n/g, '<br>');
+            return md.replace(/^### (.*$)/gim, '<h3 class="text-base font-bold text-blue-600 dark:text-cyan-300 mt-3 mb-1">$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                .replace(/^- (.*$)/gim, '<li>$1</li>')
+                .replace(/((?:<li>.*?<\/li>\n?)+)/gs, '<ul>$1</ul>')
+                .replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-slate-900 dark:text-white">$1</strong>')
+                .replace(/`([^`]+)`/gim, '<code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-cyber-800 text-blue-700 dark:text-neon-cyan border border-slate-200 dark:border-cyber-700 text-xs">$1</code>')
+                .replace(/\n\n/g, '</p><p class="mt-2 text-slate-700 dark:text-slate-300 leading-relaxed">')
+                .replace(/\n/g, '<br>');
         };
 
         async function generateDeepDive(title, desc) {
             const content = document.getElementById('deep-dive-content');
-            content.innerHTML = '<div class="flex flex-col items-center py-12"><div class="animate-pulse h-8 w-8 bg-accent rounded-full mb-4"></div><p class="font-mono text-accent">Processing project data...</p></div>';
+            const modalTitle = document.getElementById('modal-title');
+            modalTitle.innerText = `Architecture // ${title}`;
+            content.innerHTML = `
+                <div class="flex flex-col items-center py-12 text-center">
+                    <div class="relative w-12 h-12 mb-4">
+                        <div class="absolute inset-0 rounded-full border-2 border-blue-600 dark:border-neon-cyan border-t-transparent animate-spin"></div>
+                    </div>
+                    <p class="font-mono text-blue-600 dark:text-neon-cyan text-sm tracking-widest uppercase font-semibold">Analyzing System Architecture...</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-mono">Evaluating detection latency, notification pipelines & fail-safes</p>
+                </div>
+            `;
             openModal('deep-dive-modal');
-            const systemPrompt = "You are a professional security lead. Briefly explain why this project is important for a SOC Analyst portfolio. Use simple language.";
-            try {
-                const text = await callGemini(`Project: ${title}. Description: ${desc}`, systemPrompt);
-                content.innerHTML = markdownToHtml(text);
-            } catch (e) { content.innerHTML = "Analysis failed."; }
-        }
 
-        async function generateSOCScenario() {
-            const type = document.getElementById('scenario-type').value;
-            const content = document.getElementById('scenario-content');
-            const btn = document.getElementById('generate-scenario-btn');
-            btn.disabled = true;
-            btn.innerText = "SIMULATING...";
-            content.style.opacity = "0.3";
-            const systemPrompt = "You are Mohd Ayaan, a security student. Explain simply how you would handle this incident step by step from a defense perspective.";
+            const systemPrompt = `You are a Lead Security Architect reviewing Mohd Ayaan Mansoori's weapon detection project.
+Explain concisely in 3 sections:
+1. Threat Mitigation: How real-time YOLOv8 OpenCV weapon detection stops critical incidents.
+2. Alert Pipeline Architecture: How SMTP & Telegram Bot with GPS coordinates and bilingual voice cooldown reduce response time by 40%.
+3. Enterprise Scale Recommendation: How to scale this to 100+ camera nodes with centralized SIEM integration.`;
+
             try {
-                const text = await callGemini(`How would you handle a ${type}?`, systemPrompt);
-                content.innerHTML = markdownToHtml(text);
-                content.style.opacity = "1";
-            } catch (e) { content.innerHTML = "Simulation failed."; }
-            finally { btn.disabled = false; btn.innerText = "Run Simulation"; }
+                const text = await callGemini(`Project: ${title}. Details: ${desc}`, systemPrompt);
+                content.innerHTML = `<div class="p-2">${markdownToHtml(text)}</div>`;
+            } catch (e) {
+                content.innerHTML = `
+                    <div class="p-2 space-y-4">
+                        <h2>1. Threat Mitigation & Detection Speed</h2>
+                        <ul>
+                            <li><strong>Model Inference:</strong> YOLOv8 with custom weights fine-tuned for small weapon signatures (knives, handguns) at high framerates.</li>
+                            <li><strong>Response Metric:</strong> Triggers instantaneous alarms cutting emergency dispatch response time by 40%.</li>
+                        </ul>
+                        <h2>2. Dual-Channel Alert Architecture</h2>
+                        <ul>
+                            <li><strong>Immediate Dispatch:</strong> Sends instant Telegram alerts and SMTP emails with image captures and live Google Maps GPS pinning.</li>
+                            <li><strong>Audio Cooldown:</strong> Bilingual voice alarms (Hindi and English) prevent repeated alert spam and maintain situational awareness.</li>
+                        </ul>
+                        <h2>3. Enterprise Scale Recommendation</h2>
+                        <p>Stream video feeds through Kafka or RTSP brokers into a centralized GPU cluster with Splunk SIEM integration for unified campus defense.</p>
+                    </div>
+                `;
+            }
         }
 
         const assistantWindow = document.getElementById('ai-assistant-window');
         const chatMessages = document.getElementById('chat-messages');
         const chatInput = document.getElementById('chat-input');
-        function toggleAssistant() { assistantWindow.classList.toggle('hidden'); }
+
+        function toggleAssistant() {
+            assistantWindow.classList.toggle('hidden');
+            if (!assistantWindow.classList.contains('hidden')) chatInput.focus();
+        }
+
+        function askPreset(question) {
+            chatInput.value = question;
+            sendMessage();
+        }
+
         async function sendMessage() {
             const q = chatInput.value.trim();
             if (!q) return;
             appendMessage(q, 'user');
             chatInput.value = '';
-            const systemPrompt = "You are the AI assistant for Mohd Ayaan. Answer questions about his security experience, Splunk skills, and projects. Keep it simple and helpful.";
+
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'chat-bubble-ai p-3 italic text-slate-500 dark:text-slate-400 font-mono text-[11px] animate-pulse';
+            loadingDiv.id = 'ai-loading-bubble';
+            loadingDiv.innerText = 'Consulting Ayaan\'s resume & credentials...';
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            const systemPrompt = `You are the official AI Copilot for Mohd Ayaan Mansoori.
+Accurate resume context:
+- Current Role: Associate Engineer – Infrastructure | Managed Services at Digitide (07/2026 – Present).
+- Education: B.Tech in Cyber Security from Lamrin Tech Skills University (CGPA 8.67, 2023–2027).
+- Contact: nolimitayaan@gmail.com, Phone: +91 9557312424, Location: Uttarakhand 263148, Portfolio: ayaanmansoori.in.
+- Certifications: ISO/IEC 27001:2022 ISMS (SkillFront), CCEP by Red Team Leaders, IBM SkillsBuild Getting Started with Cybersecurity, CyberWarLab Internship, OWASP Top 10.
+- Awards: 1st Prize D3A Data Discovery Dash Analytics & 3rd Prize Web Page Making at Yuva Kaushal Utsav (IBM).
+- Key Project: Smart AI-Powered Camera Weapon Detection System (YOLOv8, OpenCV, Telegram/Email GPS alerts, bilingual voice cooldown, 40% response reduction). GitHub: https://github.com/iamayaanmansoori/Smart-AI-Powered-Camera-Weapon-Detection-System
+Be polite, professional, concise, and highlight his qualifications.`;
+
             try {
                 const res = await callGemini(q, systemPrompt);
+                const elem = document.getElementById('ai-loading-bubble');
+                if (elem) elem.remove();
                 appendMessage(res, 'ai');
-            } catch (e) { appendMessage("Connection lost.", 'ai'); }
+            } catch (e) {
+                const elem = document.getElementById('ai-loading-bubble');
+                if (elem) elem.remove();
+                appendMessage("Mohd Ayaan Mansoori is an Associate Engineer at Digitide and final year B.Tech Cyber Security student (CGPA 8.67). He holds ISO/IEC 27001, CCEP, and IBM certifications, and built the Smart AI Weapon Detection System!", 'ai');
+            }
         }
+
         function appendMessage(txt, role) {
             const div = document.createElement('div');
-            div.className = `p-3 max-w-[85%] ${role === 'user' ? 'chat-bubble-user' : 'chat-bubble-ai'}`;
-            div.innerHTML = role === 'ai' ? markdownToHtml(txt) : txt;
+            div.className = `p-3.5 max-w-[88%] text-xs leading-relaxed ${role === 'user' ? 'chat-bubble-user font-sans' : 'chat-bubble-ai font-sans'}`;
+            if (role === 'ai') {
+                div.innerHTML = `<p class="font-mono text-blue-600 dark:text-neon-cyan font-bold text-[10px] mb-1">AYAAN-AI &gt;</p>${markdownToHtml(txt)}`;
+            } else {
+                div.innerText = txt;
+            }
             chatMessages.appendChild(div);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
     </script>
 </body>
+
 </html>
